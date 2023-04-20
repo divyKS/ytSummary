@@ -1,0 +1,46 @@
+{
+    "name": "PRACTICUM",
+    "version": "1.0.0",
+    "description": "I will summarize YT videos for you!",
+    "permissions": ["storage", "tabs"],
+    "host_permissions": ["https://*.youtube.com/*"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://*.youtube.com/*"],
+        "js": ["contentScript.js"]
+      }
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": [
+          "assets/bookmark.png",
+          "assets/play.png",
+          "assets/delete.png",
+          "assets/save.png"
+        ],
+        "matches": ["https://*.youtube.com/*"]
+      }
+    ],
+    "icons": {
+      "16": "assets/ext-icon.png",
+      "32": "assets/ext-icon.png",
+      "48": "assets/ext-icon.png",
+      "128": "assets/ext-icon.png"
+    },
+    "action": {
+      "default_icon": {
+        "16": "assets/ext-icon.png",
+        "24": "assets/ext-icon.png",
+        "32": "assets/ext-icon.png", 
+        "48": "assets/ext-icon.png", 
+        "128": "assets/ext-icon.png"
+      },
+      "default_title": "Click me to summarize",
+      "default_popup": "popup.html"
+    },
+    "manifest_version": 3
+  }
+  
