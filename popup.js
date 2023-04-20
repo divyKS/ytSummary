@@ -1,15 +1,7 @@
-import { getActiveTabURL } from "./utils.js";
-
-// const summarizeButton = document.getElementById('summarizeButton');
-// const summaryDiv = document.getElementById('summary');
-
 document.addEventListener("DOMContentLoaded", () => {
-
   const summarizeButton = document.getElementById("summarizeButton");
-
   summarizeButton.addEventListener("click", () => {
-
-    chrome.runtime.sendMessage((response) => {
+    chrome.runtime.sendMessage({ type: "summarize" }, (response) => {
       const summaryDiv = document.getElementById("summary");
       if (response.summary) {
         summaryDiv.textContent = response.summary;
@@ -19,5 +11,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-  
