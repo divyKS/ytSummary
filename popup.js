@@ -10,10 +10,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     const urlParameters = new URLSearchParams(queryParameters);
     const currentVideoID = urlParameters.get("v");
 
+    summary.innerHTML = `
+    <div class="loader-wrapper">
+      <div class="loader"></div>
+    </div>
+    `;
+
     if (activeTab.url.includes("youtube.com/watch") && currentVideoID){
-      summary.textContent = "this is the smmary os the video id = " + currentVideoID;
+      fetch(`http://localhost:5000/getsummary`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          'vid_id': currentVideoID
+        })
+      }).then(res => {
+        return res.text();
+      })
+      .then(data => {
+        summary.innerHTML = data;
+      })
     } else {
-      summary.textContent = "this is not yt video page dear";
+      summary.innerHTML = `<div style="color: red;" class="default">Not a video</div>`;
     }
   });
   
