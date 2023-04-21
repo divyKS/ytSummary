@@ -1,0 +1,36 @@
+from flask import Flask, request, json
+from youtube_transcript_api import YouTubeTranscriptApi
+from transformers import pipeline
+from flask_cors import CORS
+app = Flask(__name__)
+CORS(app)
+class Summarizer:
+    def __init__(self, text) -> None:
+        self.text = text
+
+    def getSummary(self) -> str:
+        summarizer = pipeline("summarization", model="stevhliu/my_awesome_billsum_model")
+        return summarizer(self.text)[0]['summary_text']
+        
+
+@app.route('/getsummary', methods=['POST'])
+def getSummary():
+    req = request.get_json()
+    vid_id = req['vid_id']
+    data = YouTubeTranscriptApi.get_transcript(vid_id)
+
+    transcript = ""
+    for obj in data:
+        transcript += obj['text'] + " "
+
+    transcript = transcript.replace('\n', ' ')
+    transcript = transcript[0:10000]
+
+    return Summarizer(transcript).getSummary()
+
+@app.route('/')
+def main():
+    return "Server is running 🚀🚀"
+
+while True:
+    app.run(debug=True)
