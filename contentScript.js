@@ -1,16 +1,13 @@
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.type === "summarize") {
-    const videoId = sender.videoId;
+(() => {
+  let currentVideo = "";
+  chrome.runtime.onMessage.addListener((obj, sender, response) => {
+    const { type, value, videoId } = obj;
 
-    fetch(`https://example.com/summarize?videoId=${videoId}`)
-      .then((response) => response.json())
-      .then((summary) => {
-        sendResponse({ summary: summary });
-      })
-      .catch((error) => {
-        sendResponse({ error: error });
-      });
-      
-    return true; 
-  }
-});
+    if (type === "NEW") {
+      currentVideo = videoId;
+
+      response(currentVideo);
+    }
+  });
+
+})();
