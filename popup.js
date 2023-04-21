@@ -12,7 +12,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     summary.innerHTML = `
     <div class="loader-wrapper">
-      <div class="loader"></div>
+      <div class="loader">
+        <div class="loader-child loader-1"></div>
+        <div class="loader-child loader-2"></div>
+        <div class="loader-child loader-3"></div>
+        <div class="loader-child loader-4"></div>
+        <div class="loader-child loader-5"></div>
+      </div>
     </div>
     `;
 
