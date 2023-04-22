@@ -11,12 +11,18 @@
 
 <body>
   <div class="container">
-    <div class="heading">YT Summarizer</div>
+    <div class="heading-flex">
+      <div class="heading">YT Summarizer</div>
+      <div id="toggle-tip" class="toggle-tip">NLP</div>
+      <label class="switch">
+        <input type="checkbox">
+        <span id="switch" class="slider round"></span>
+      </label>
+    </div>
     <div id="summary">
       <div class="default">Summary here</div>
     </div>
-    <button id="summarizeButton">Summarize</button>
+    <button id="summarizeButton">Summarize (GPT)</button>
   </div>
 </body>
-
 </html>

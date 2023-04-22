@@ -2,6 +2,24 @@ import { getActiveTabURL } from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const summarizeButton = document.getElementById("summarizeButton");
+  const switchButton = document.getElementById("switch");
+  const toggleTip = document.getElementById("toggle-tip");
+  let nlp = false;
+
+  switchButton.addEventListener('mouseenter', async ()=>{
+    toggleTip.style.visibility = "visible";
+  })
+
+  switchButton.addEventListener('mouseleave', async ()=>{
+    toggleTip.style.visibility = "hidden";
+  })
+
+  switchButton.addEventListener("click", async ()=>{
+    nlp = !nlp;
+    summarizeButton.innerText = nlp ? "Summarize (NLP)" : "Summarize (GPT)";
+    toggleTip.innerText = !nlp ? "NLP" : "GPT";
+  });
+
   summarizeButton.addEventListener("click", async() => {
     const summary = document.getElementById("summary");
 
@@ -23,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     `;
 
     if (activeTab.url.includes("youtube.com/watch") && currentVideoID){
-      fetch(`http://localhost:5000/getsummary`, {
+      fetch(nlp ? `http://localhost:5000/getsummary` : `http://localhost:5000/getsummarygpt`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
