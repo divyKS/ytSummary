@@ -1,7 +1,7 @@
 {
-  "name": "My YT Bookmarks",
+  "name": "YT Summarizer",
   "version": "0.1.0",
-  "description": "Saving timestamps in YT videos",
+  "description": "This will summarize the youtube video for you!",
   "permissions": ["storage", "tabs"],
   "host_permissions": ["https://*.youtube.com/*"],
   "background": {
@@ -30,8 +30,15 @@
       "24": "assets/ext-icon.png",
       "32": "assets/ext-icon.png"
     },
-    "default_title": "My YT Bookmarks",
+    "default_title": "YT Summarizer",
     "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "assets/ext-icon.png",
+    "24": "assets/ext-icon.png",
+    "32": "assets/ext-icon.png",
+    "48": "assets/ext-icon.png",
+    "128": "assets/ext-icon.png"
   },
   "manifest_version": 3
 }
