@@ -87,7 +87,7 @@
   left: 50%;
 }
 
-#summarizeButton{
+.utilButtons{
   font-family: 'Poppins', sans-serif;
   background-color: rgb(0, 153, 255);
   color: white;
@@ -100,8 +100,17 @@
   transition: 0.2s ease all;
 }
 
-#summarizeButton:hover{
+.utilButtons:hover{
   background-color: rgb(37, 0, 169);
+}
+
+#summarizeButton{
+  margin: 5px;
+}
+
+#stopButton{
+  margin: 5px;
+  background-color: red;
 }
 
 .toggle-tip{
@@ -119,6 +128,7 @@
 .heading-flex{
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 /* The switch - the box around the slider */
